@@ -1,8 +1,13 @@
 import 'package:bus_reservation_udemy/pages/search_page.dart';
+import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    child: MyApp(),
+    create: (context) => AppDataProvider(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
