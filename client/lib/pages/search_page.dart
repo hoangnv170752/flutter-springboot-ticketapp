@@ -124,7 +124,7 @@ class _SearchPageState extends State<SearchPage> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(const Duration(days: 7)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
     if (selectedDate != null) {
       setState(() {
@@ -141,7 +141,10 @@ class _SearchPageState extends State<SearchPage> {
     if (_formKey.currentState!.validate()) {
       Provider.of<AppDataProvider>(context, listen: false)
           .getRouteByCityFromAndCityTo(fromCity!, toCity!)
-          .then((route) {});
+          .then((route) {
+        Navigator.pushNamed(context, routeNameSearchResultPage,
+            arguments: [route, getFormattedDate(departureDate!)]);
+      });
     }
   }
 }
